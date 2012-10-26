@@ -1,0 +1,35 @@
+output: |
+
+  sh ./runtests  -g -t /mnt/nfsv3tcp/rhel55.test
+
+  GENERAL TESTS: directory /mnt/nfsv3tcp/rhel55.test
+  if test ! -x runtests; then chmod a+x runtests; fi
+  cd /mnt/nfsv3tcp/rhel55.test; rm -f Makefile runtests runtests.wrk *.sh *.c mkdummy rmdummy nroff.in makefile.tst
+  cp Makefile runtests runtests.wrk *.sh *.c mkdummy rmdummy nroff.in makefile.tst /mnt/nfsv3tcp/rhel55.test
+
+  Small Compile
+  smcomp.time
+  	0.1 (0.0) real	0.1 (0.0) user	0.0 (0.0) sys
+
+  Tbl
+  	0.0 (0.0) real	0.0 (0.0) user	0.0 (0.0) sys
+
+  Nroff
+  	0.1 (0.0) real	0.1 (0.0) user	0.0 (0.0) sys
+
+  Large Compile
+  	0.1 (0.0) real	0.1 (0.0) user	0.0 (0.0) sys
+
+  Four simultaneous large compiles
+  	0.7 (0.0) real	0.3 (0.0) user	0.0 (0.0) sys
+
+  Makefile
+  	0.1 (0.0) real	0.1 (0.0) user	0.0 (0.0) sys
+
+  General tests complete
+
+  All tests completed
+title: NFS v3 TCP - General Test
+total: 1
+passed: 1
+type: general

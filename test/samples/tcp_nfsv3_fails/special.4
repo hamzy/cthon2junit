@@ -1,0 +1,27 @@
+output: |
+  
+  sh ./runtests  -s -t /mnt/elm3c40.beaverton.ibm.com/elm3c48.test
+  
+  SPECIAL TESTS: directory /mnt/elm3c40.beaverton.ibm.com/elm3c48.test
+  cd /mnt/elm3c40.beaverton.ibm.com/elm3c48.test; rm -f runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp
+  cp runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp /mnt/elm3c40.beaverton.ibm.com/elm3c48.test
+  
+  check for proper open/unlink operation
+  nfsjunk files before unlink:
+    ls: .nfs*: No such file or directory
+  ./nfs1ONslQ open; unlink ret = 0
+  nfsjunk files after unlink:
+    -rw-r--r-- 1 root root 0 Nov 18 13:12 .nfs00000000007d006f00000025
+  read data not same as written data
+   written: 'This is a test message written to the unlinked file
+  '
+   read:    'This is a test message written to the unlinked file
+  '
+  nfsjunk files after close:
+    ls: .nfs*: No such file or directory
+  special tests failed
+  Tests failed, leaving /mnt/elm3c40.beaverton.ibm.com mounted
+title: NFS v3 TCP - Special Test 4
+total: 1
+passed: 0
+type: special

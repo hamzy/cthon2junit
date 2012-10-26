@@ -1,0 +1,149 @@
+<testsuite failures='0' name='NFS v3 UDP - Special Test' tests='1' time='0'><testcase name='Special Tests' time='0'><success message='
+sh ./runtests  -s -t /mnt/nfsv3udp/rhel55.test
+
+SPECIAL TESTS: directory /mnt/nfsv3udp/rhel55.test
+cd /mnt/nfsv3udp/rhel55.test; rm -f runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp
+cp runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp /mnt/nfsv3udp/rhel55.test
+
+check for proper open/unlink operation
+nfsjunk files before unlink:
+  ls: .nfs*: No such file or directory
+./nfshQW9uz open; unlink ret = 0
+nfsjunk files after unlink:
+  -rw-r--r-- 1 root root 0 Nov 12 10:47 .nfs00000000000e469b000000b6
+data compare ok
+nfsjunk files after close:
+  ls: .nfs*: No such file or directory
+test completed successfully.
+
+check for proper open/rename operation
+nfsjunk files before rename:
+  ls: .nfs*: No such file or directory
+./nfsbJxx6cx open; rename ret = 0
+nfsjunk files after rename:
+  -rwxr-xr-x 1 root root 0 Nov 12 10:47 .nfs00000000000e46b5000000b7
+data compare ok
+nfsjunk files after close:
+  ls: .nfs*: No such file or directory
+test completed successfully.
+
+check for proper open/chmod 0 operation
+testfile before chmod:
+  -rw-r--r-- 1 root root 0 Nov 12 10:47 ./nfsjGLxGK
+./nfsjGLxGK open; chmod ret = 0
+testfile after chmod:
+  ---------- 1 root root 0 Nov 12 10:47 ./nfsjGLxGK
+data compare ok
+testfile after write/read:
+  ---------- 1 root root 100 Nov 12 10:47 ./nfsjGLxGK
+test completed successfully.
+
+check for lost reply on non-idempotent requests
+100 tries
+
+test exclusive create.
+
+test negative seek, you should get: read: Invalid argument
+or lseek: Invalid argument
+lseek: Invalid argument
+
+test rename
+
+test truncate
+truncate succeeded
+
+test holey file support
+Holey file test ok
+
+second check for lost reply on non-idempotent requests
+testing 50 idempotencies in directory &quot;testdir&quot;
+
+test rewind support
+
+test telldir cookies
+
+test freesp and file size
+fcntl(...F_FREESP...) not available on this platform.
+
+write/read 30 MB file
+
+write/read at 2GB, 4GB edges
+
+Special tests complete
+
+All tests completed
+'/></testcase><system-out>
+sh ./runtests  -s -t /mnt/nfsv3udp/rhel55.test
+
+SPECIAL TESTS: directory /mnt/nfsv3udp/rhel55.test
+cd /mnt/nfsv3udp/rhel55.test; rm -f runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp
+cp runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp /mnt/nfsv3udp/rhel55.test
+
+check for proper open/unlink operation
+nfsjunk files before unlink:
+  ls: .nfs*: No such file or directory
+./nfshQW9uz open; unlink ret = 0
+nfsjunk files after unlink:
+  -rw-r--r-- 1 root root 0 Nov 12 10:47 .nfs00000000000e469b000000b6
+data compare ok
+nfsjunk files after close:
+  ls: .nfs*: No such file or directory
+test completed successfully.
+
+check for proper open/rename operation
+nfsjunk files before rename:
+  ls: .nfs*: No such file or directory
+./nfsbJxx6cx open; rename ret = 0
+nfsjunk files after rename:
+  -rwxr-xr-x 1 root root 0 Nov 12 10:47 .nfs00000000000e46b5000000b7
+data compare ok
+nfsjunk files after close:
+  ls: .nfs*: No such file or directory
+test completed successfully.
+
+check for proper open/chmod 0 operation
+testfile before chmod:
+  -rw-r--r-- 1 root root 0 Nov 12 10:47 ./nfsjGLxGK
+./nfsjGLxGK open; chmod ret = 0
+testfile after chmod:
+  ---------- 1 root root 0 Nov 12 10:47 ./nfsjGLxGK
+data compare ok
+testfile after write/read:
+  ---------- 1 root root 100 Nov 12 10:47 ./nfsjGLxGK
+test completed successfully.
+
+check for lost reply on non-idempotent requests
+100 tries
+
+test exclusive create.
+
+test negative seek, you should get: read: Invalid argument
+or lseek: Invalid argument
+lseek: Invalid argument
+
+test rename
+
+test truncate
+truncate succeeded
+
+test holey file support
+Holey file test ok
+
+second check for lost reply on non-idempotent requests
+testing 50 idempotencies in directory &quot;testdir&quot;
+
+test rewind support
+
+test telldir cookies
+
+test freesp and file size
+fcntl(...F_FREESP...) not available on this platform.
+
+write/read 30 MB file
+
+write/read at 2GB, 4GB edges
+
+Special tests complete
+
+All tests completed
+</system-out></testsuite>

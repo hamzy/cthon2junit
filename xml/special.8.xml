@@ -1,0 +1,45 @@
+<testsuite failures='1' name='NFS v3 TCP - Special Test 8' tests='1' time='0'><testcase name='Special Tests' time='0'><failure message='
+sh ./runtests  -s -t /mnt/elm3c40/elm3c48.test
+
+SPECIAL TESTS: directory /mnt/elm3c40/elm3c48.test
+cd /mnt/elm3c40/elm3c48.test; rm -f runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp
+cp runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp /mnt/elm3c40/elm3c48.test
+
+check for proper open/unlink operation
+nfsjunk files before unlink:
+  ls: .nfs*: No such file or directory
+./nfsZlHpch open; unlink ret = 0
+nfsjunk files after unlink:
+  -rw-r--r-- 1 root root 0 Nov 18 13:16 .nfs00000000007d006f0000002a
+read data not same as written data
+ written: &apos;This is a test message written to the unlinked file
+&apos;
+ read:    &apos;This is a test message written to the unlinked file
+&apos;
+nfsjunk files after close:
+  ls: .nfs*: No such file or directory
+special tests failed
+Tests failed, leaving /mnt/elm3c40 mounted
+'/></testcase><system-out>
+sh ./runtests  -s -t /mnt/elm3c40/elm3c48.test
+
+SPECIAL TESTS: directory /mnt/elm3c40/elm3c48.test
+cd /mnt/elm3c40/elm3c48.test; rm -f runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp
+cp runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp /mnt/elm3c40/elm3c48.test
+
+check for proper open/unlink operation
+nfsjunk files before unlink:
+  ls: .nfs*: No such file or directory
+./nfsZlHpch open; unlink ret = 0
+nfsjunk files after unlink:
+  -rw-r--r-- 1 root root 0 Nov 18 13:16 .nfs00000000007d006f0000002a
+read data not same as written data
+ written: &apos;This is a test message written to the unlinked file
+&apos;
+ read:    &apos;This is a test message written to the unlinked file
+&apos;
+nfsjunk files after close:
+  ls: .nfs*: No such file or directory
+special tests failed
+Tests failed, leaving /mnt/elm3c40 mounted
+</system-out></testsuite>

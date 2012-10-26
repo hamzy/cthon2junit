@@ -1,0 +1,76 @@
+output: |
+  
+  sh ./runtests  -s -t /mnt/elm3c40/elm3c48.test
+  
+  SPECIAL TESTS: directory /mnt/elm3c40/elm3c48.test
+  cd /mnt/elm3c40/elm3c48.test; rm -f runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp
+  cp runtests runtests.wrk READWIN.txt Makefile op_unlk op_ren op_chmod dupreq excltest negseek rename holey truncate nfsidem nstat stat stat2 touchn fstat rewind telldir bigfile bigfile2 freesp /mnt/elm3c40/elm3c48.test
+  
+  check for proper open/unlink operation
+  nfsjunk files before unlink:
+    ls: .nfs*: No such file or directory
+  ./nfsiuVJmo open; unlink ret = 0
+  nfsjunk files after unlink:
+    -rw-r--r-- 1 root root 0 Nov 19 08:33 .nfs00000000007d006f0000003c
+  data compare ok
+  nfsjunk files after close:
+    ls: .nfs*: No such file or directory
+  test completed successfully.
+  
+  check for proper open/rename operation
+  nfsjunk files before rename:
+    ls: .nfs*: No such file or directory
+  ./nfsb8bfCCu open; rename ret = 0
+  nfsjunk files after rename:
+    -rwxr-xr-x 1 root root 0 Nov 19 08:33 .nfs00000000007d00700000003d
+  data compare ok
+  nfsjunk files after close:
+    ls: .nfs*: No such file or directory
+  test completed successfully.
+  
+  check for proper open/chmod 0 operation
+  testfile before chmod:
+    -rw-r--r-- 1 root root 0 Nov 19 08:33 ./nfsC6yYrq
+  ./nfsC6yYrq open; chmod ret = 0
+  testfile after chmod:
+    ---------- 1 root root 0 Nov 19 08:33 ./nfsC6yYrq
+  data compare ok
+  testfile after write/read:
+    ---------- 1 root root 100 Nov 19 08:33 ./nfsC6yYrq
+  test completed successfully.
+  
+  check for lost reply on non-idempotent requests
+  100 tries
+  
+  test exclusive create.
+  
+  test negative seek, you should get: read: Invalid argument
+  or lseek: Invalid argument
+  lseek: Invalid argument
+  
+  test rename
+  
+  test truncate
+  truncate succeeded
+  
+  test holey file support
+  Holey file test ok
+  
+  second check for lost reply on non-idempotent requests
+  testing 50 idempotencies in directory "testdir"
+  
+  test rewind support
+  
+  test telldir cookies
+  
+  test freesp and file size
+  fcntl(...F_FREESP...) not available on this platform.
+  
+  write/read 30 MB file
+  can't get page size
+  special tests failed
+  Tests failed, leaving /mnt/elm3c40 mounted
+title: NFS v3 TCP - Special Test 10
+total: 15
+passed: 13
+type: special

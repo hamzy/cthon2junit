@@ -1,0 +1,19 @@
+<testsuite failures='1' name='NFS v3 TCP - Basic Test - Test 1 Failure' tests='1' time='0'><testcase name='Basic Tests' time='0'><failure message='
+sh ./runtests  -b -t /mnt/elm3c40/elm3c48.test
+
+Starting BASIC tests: test directory /mnt/elm3c40/elm3c48.test (arg: -t)
+
+./test1: File and directory creation test
+	 ./test1: (/mnt/elm3c40/elm3c48.test/dir.0/dir.1/dir.1/dir.1) mkdir dir.0 failed : Invalid argument
+basic tests failed
+Tests failed, leaving /mnt/elm3c40 mounted
+'/></testcase><system-out>
+sh ./runtests  -b -t /mnt/elm3c40/elm3c48.test
+
+Starting BASIC tests: test directory /mnt/elm3c40/elm3c48.test (arg: -t)
+
+./test1: File and directory creation test
+	 ./test1: (/mnt/elm3c40/elm3c48.test/dir.0/dir.1/dir.1/dir.1) mkdir dir.0 failed : Invalid argument
+basic tests failed
+Tests failed, leaving /mnt/elm3c40 mounted
+</system-out></testsuite>

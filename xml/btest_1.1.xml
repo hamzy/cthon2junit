@@ -1,0 +1,19 @@
+<testsuite failures='1' name='NFS v3 TCP - Basic Test - Test 1.1 Failure' tests='1' time='0'><testcase name='Basic Tests' time='0'><failure message='
+sh ./runtests  -b -t /mnt/192.168.122.101/laptop.test
+
+Starting BASIC tests: test directory /mnt/192.168.122.101/laptop.test (arg: -t)
+
+./test1: File and directory creation test
+	 ./test1: (/mnt/192.168.122.101/laptop.test) close 3 failed
+basic tests failed
+Tests failed, leaving /mnt/192.168.122.101 mounted
+'/></testcase><system-out>
+sh ./runtests  -b -t /mnt/192.168.122.101/laptop.test
+
+Starting BASIC tests: test directory /mnt/192.168.122.101/laptop.test (arg: -t)
+
+./test1: File and directory creation test
+	 ./test1: (/mnt/192.168.122.101/laptop.test) close 3 failed
+basic tests failed
+Tests failed, leaving /mnt/192.168.122.101 mounted
+</system-out></testsuite>

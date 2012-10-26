@@ -1,0 +1,5 @@
+<testsuite failures='1' name='NFS v3 TCP - Basic Test - Bad Argument Failure' tests='1' time='0'><testcase name='Basic Tests' time='0'><failure message='
+usage: server [-a|-b|-g|-s|-l|-c] [-f|-t|-n|-h] [-o mnt_options] [-p server_path] [-m mntpoint] [-N passes] server_name
+'/></testcase><system-out>
+usage: server [-a|-b|-g|-s|-l|-c] [-f|-t|-n|-h] [-o mnt_options] [-p server_path] [-m mntpoint] [-N passes] server_name
+</system-out></testsuite>

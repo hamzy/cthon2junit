@@ -1,0 +1,414 @@
+output: |
+  sh ./runtests  -l -t /mnt/nfsv3tcp/rhel60.test
+
+  Starting LOCKING tests: test directory /mnt/nfsv3tcp/rhel60.test (arg: -t)
+
+  Testing native post-LFS locking
+
+  Creating parent/child synchronization pipes.
+
+  Test #1 - Test regions of an unlocked file.
+  	Parent: 1.1  - F_TEST  [               0,               1] PASSED.
+  	Parent: 1.2  - F_TEST  [               0,          ENDING] PASSED.
+  	Parent: 1.3  - F_TEST  [               0,7fffffffffffffff] PASSED.
+  	Parent: 1.4  - F_TEST  [               1,               1] PASSED.
+  	Parent: 1.5  - F_TEST  [               1,          ENDING] PASSED.
+  	Parent: 1.6  - F_TEST  [               1,7fffffffffffffff] PASSED.
+  	Parent: 1.7  - F_TEST  [7fffffffffffffff,               1] PASSED.
+  	Parent: 1.8  - F_TEST  [7fffffffffffffff,          ENDING] PASSED.
+  	Parent: 1.9  - F_TEST  [7fffffffffffffff,7fffffffffffffff] PASSED.
+
+  Test #2 - Try to lock the whole file.
+  	Parent: 2.0  - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  2.1  - F_TEST  [               0,               1] PASSED.
+  	Child:  2.2  - F_TEST  [               0,          ENDING] PASSED.
+  	Child:  2.3  - F_TEST  [               0,7fffffffffffffff] PASSED.
+  	Child:  2.4  - F_TEST  [               1,               1] PASSED.
+  	Child:  2.5  - F_TEST  [               1,          ENDING] PASSED.
+  	Child:  2.6  - F_TEST  [               1,7fffffffffffffff] PASSED.
+  	Child:  2.7  - F_TEST  [7fffffffffffffff,               1] PASSED.
+  	Child:  2.8  - F_TEST  [7fffffffffffffff,          ENDING] PASSED.
+  	Child:  2.9  - F_TEST  [7fffffffffffffff,7fffffffffffffff] PASSED.
+  	Parent: 2.10 - F_ULOCK [               0,          ENDING] PASSED.
+
+  Test #3 - Try to lock just the 1st byte.
+  	Parent: 3.0  - F_TLOCK [               0,               1] PASSED.
+  	Child:  3.1  - F_TEST  [               0,               1] PASSED.
+  	Child:  3.2  - F_TEST  [               0,          ENDING] PASSED.
+  	Child:  3.3  - F_TEST  [               1,               1] PASSED.
+  	Child:  3.4  - F_TEST  [               1,          ENDING] PASSED.
+  	Parent: 3.5  - F_ULOCK [               0,               1] PASSED.
+
+  Test #4 - Try to lock the 2nd byte, test around it.
+  	Parent: 4.0  - F_TLOCK [               1,               1] PASSED.
+  	Child:  4.1  - F_TEST  [               0,               1] PASSED.
+  	Child:  4.2  - F_TEST  [               0,               2] PASSED.
+  	Child:  4.3  - F_TEST  [               0,          ENDING] PASSED.
+  	Child:  4.4  - F_TEST  [               1,               1] PASSED.
+  	Child:  4.5  - F_TEST  [               1,               2] PASSED.
+  	Child:  4.6  - F_TEST  [               1,          ENDING] PASSED.
+  	Child:  4.7  - F_TEST  [               2,               1] PASSED.
+  	Child:  4.8  - F_TEST  [               2,               2] PASSED.
+  	Child:  4.9  - F_TEST  [               2,          ENDING] PASSED.
+  	Parent: 4.10 - F_ULOCK [               1,               1] PASSED.
+
+  Test #5 - Try to lock 1st and 2nd bytes, test around them.
+  	Parent: 5.0  - F_TLOCK [               0,               1] PASSED.
+  	Parent: 5.1  - F_TLOCK [               2,               1] PASSED.
+  	Child:  5.2  - F_TEST  [               0,               1] PASSED.
+  	Child:  5.3  - F_TEST  [               0,               2] PASSED.
+  	Child:  5.4  - F_TEST  [               0,          ENDING] PASSED.
+  	Child:  5.5  - F_TEST  [               1,               1] PASSED.
+  	Child:  5.6  - F_TEST  [               1,               2] PASSED.
+  	Child:  5.7  - F_TEST  [               1,          ENDING] PASSED.
+  	Child:  5.8  - F_TEST  [               2,               1] PASSED.
+  	Child:  5.9  - F_TEST  [               2,               2] PASSED.
+  	Child:  5.10 - F_TEST  [               2,          ENDING] PASSED.
+  	Child:  5.11 - F_TEST  [               3,               1] PASSED.
+  	Child:  5.12 - F_TEST  [               3,               2] PASSED.
+  	Child:  5.13 - F_TEST  [               3,          ENDING] PASSED.
+  	Parent: 5.14 - F_ULOCK [               0,               1] PASSED.
+  	Parent: 5.15 - F_ULOCK [               2,               1] PASSED.
+
+  Test #6 - Try to lock the MAXEOF byte.
+  	Parent: 6.0  - F_TLOCK [7fffffffffffffff,               1] PASSED.
+  	Child:  6.1  - F_TEST  [7ffffffffffffffe,               1] PASSED.
+  	Child:  6.2  - F_TEST  [7ffffffffffffffe,               2] PASSED.
+  	Child:  6.3  - F_TEST  [7ffffffffffffffe,          ENDING] PASSED.
+  	Child:  6.4  - F_TEST  [7fffffffffffffff,               1] PASSED.
+  	Child:  6.5  - F_TEST  [7fffffffffffffff,               2] PASSED.
+  	Child:  6.6  - F_TEST  [7fffffffffffffff,          ENDING] PASSED.
+  	Child:  6.7  - F_TEST  [8000000000000000,          ENDING] PASSED.
+  	Child:  6.8  - F_TEST  [8000000000000000,               1] PASSED.
+  	Child:  6.9  - F_TEST  [8000000000000000,7fffffffffffffff] PASSED.
+  	Child:  6.10 - F_TEST  [8000000000000000,8000000000000000] PASSED.
+  	Parent: 6.11 - F_ULOCK [7fffffffffffffff,               1] PASSED.
+
+  Test #7 - Test parent/child mutual exclusion.
+  	Parent: 7.0  - F_TLOCK [             ffc,               9] PASSED.
+  	Parent: Wrote 'aaaa eh' to testfile [ 4092, 7 ].
+  	Parent: Now free child to run, should block on lock.
+  	Parent: Check data in file to insure child blocked.
+  	Parent: Read 'aaaa eh' from testfile [ 4092, 7 ].
+  	Parent: 7.1  - COMPARE [             ffc,               7] PASSED.
+  	Parent: Now unlock region so child will unblock.
+  	Parent: 7.2  - F_ULOCK [             ffc,               9] PASSED.
+  	Child:  7.3  - F_LOCK  [             ffc,               9] PASSED.
+  	Child:  Write child's version of the data and release lock.
+  	Parent: Now try to regain lock, parent should block.
+  	Child:  Wrote 'bebebebeb' to testfile [ 4092, 9 ].
+  	Child:  7.4  - F_ULOCK [             ffc,               9] PASSED.
+  	Parent: 7.5  - F_LOCK  [             ffc,               9] PASSED.
+  	Parent: Check data in file to insure child unblocked.
+  	Parent: Read 'bebebebeb' from testfile [ 4092, 9 ].
+  	Parent: 7.6  - COMPARE [             ffc,               9] PASSED.
+  	Parent: 7.7  - F_ULOCK [             ffc,               9] PASSED.
+
+  Test #8 - Rate test performing lock/unlock cycles.
+  	Parent: Performed 1000 lock/unlock cycles in 4500 msecs. [26666 lpm].
+
+  Test #10 - Make sure a locked region is split properly.
+  	Parent: 10.0  - F_TLOCK [               0,               3] PASSED.
+  	Parent: 10.1  - F_ULOCK [               1,               1] PASSED.
+  	Child:  10.2  - F_TEST  [               0,               1] PASSED.
+  	Child:  10.3  - F_TEST  [               2,               1] PASSED.
+  	Child:  10.4  - F_TEST  [               3,          ENDING] PASSED.
+  	Child:  10.5  - F_TEST  [               1,               1] PASSED.
+  	Parent: 10.6  - F_ULOCK [               0,               1] PASSED.
+  	Parent: 10.7  - F_ULOCK [               2,               1] PASSED.
+  	Child:  10.8  - F_TEST  [               0,               3] PASSED.
+  	Parent: 10.9  - F_ULOCK [               0,               1] PASSED.
+  	Parent: 10.10 - F_TLOCK [               1,               3] PASSED.
+  	Parent: 10.11 - F_ULOCK [               2,               1] PASSED.
+  	Child:  10.12 - F_TEST  [               1,               1] PASSED.
+  	Child:  10.13 - F_TEST  [               3,               1] PASSED.
+  	Child:  10.14 - F_TEST  [               4,          ENDING] PASSED.
+  	Child:  10.15 - F_TEST  [               2,               1] PASSED.
+  	Child:  10.16 - F_TEST  [               0,               1] PASSED.
+
+  Test #11 - Make sure close() releases the process's locks.
+  	Parent: 11.0  - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: Closed testfile.
+  	Child:  11.1  - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  11.2  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: 11.3  - F_TLOCK [              1d,             5b7] PASSED.
+  	Parent: 11.4  - F_TLOCK [            2000,              57] PASSED.
+  	Parent: Closed testfile.
+  	Child:  11.5  - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  11.6  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: Wrote '123456789abcdef' to testfile [ 0, 16 ].
+  	Parent: 11.7  - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: Wrote '123456789abcdef' to testfile [ 13, 16 ].
+  	Parent: Closed testfile.
+  	Child:  11.8  - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  11.9  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: Wrote '123456789abcdef' to testfile [ 0, 16 ].
+  	Parent: 11.10 - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: Truncated testfile.
+  	Parent: Closed testfile.
+  	Child:  11.11 - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  11.12 - F_ULOCK [               0,          ENDING] PASSED.
+
+  Test #12 - Signalled process should release locks.
+  	Child:  12.0  - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: Killed child process.
+  	Parent: 12.1  - F_TLOCK [               0,          ENDING] PASSED.
+
+  Test #13 - Check locking and mmap semantics.
+  	Parent: 13.0  - F_TLOCK [             ffe,          ENDING] PASSED.
+  	Parent: 13.1  - mmap [               0,            1000] WARNING!
+  	Parent: **** Expected EAGAIN, returned success...
+  	Parent: 13.2  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: unmap testfile.
+  	Parent: 13.3  - mmap [               0,            1000] PASSED.
+  	Parent: 13.4  - F_TLOCK [             ffe,          ENDING] PASSED.
+
+  Test #14 - Rate test performing I/O on unlocked and locked file.
+  	Parent: File Unlocked
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Wrote and read 256 KB file 10 times; [1497.08 +/- 49.57 KB/s].
+  	Parent: 14.0  - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: File Locked
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Wrote and read 256 KB file 10 times; [1560.98 +/- 12.08 KB/s].
+  	Parent: 14.1  - F_ULOCK [               0,          ENDING] PASSED.
+
+  Test #15 - Test 2nd open and I/O after lock and close.
+  	Parent: Second open succeeded.
+  	Parent: 15.0  - F_LOCK  [               0,          ENDING] PASSED.
+  	Parent: 15.1  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: Closed testfile.
+  	Parent: Wrote 'abcdefghij' to testfile [ 0, 11 ].
+  	Parent: Read 'abcdefghij' from testfile [ 0, 11 ].
+  	Parent: 15.2  - COMPARE [               0,               b] PASSED.
+
+  ** PARENT pass 1 results: 49/49 pass, 1/1 warn, 0/0 fail (pass/total).
+
+  **  CHILD pass 1 results: 64/64 pass, 0/0 warn, 0/0 fail (pass/total).
+
+  Testing non-native 64 bit LFS locking
+
+  Creating parent/child synchronization pipes.
+
+  Test #1 - Test regions of an unlocked file.
+  	Parent: 1.1  - F_TEST  [               0,               1] PASSED.
+  	Parent: 1.2  - F_TEST  [               0,          ENDING] PASSED.
+  	Parent: 1.3  - F_TEST  [               0,7fffffffffffffff] PASSED.
+  	Parent: 1.4  - F_TEST  [               1,               1] PASSED.
+  	Parent: 1.5  - F_TEST  [               1,          ENDING] PASSED.
+  	Parent: 1.6  - F_TEST  [               1,7fffffffffffffff] PASSED.
+  	Parent: 1.7  - F_TEST  [7fffffffffffffff,               1] PASSED.
+  	Parent: 1.8  - F_TEST  [7fffffffffffffff,          ENDING] PASSED.
+  	Parent: 1.9  - F_TEST  [7fffffffffffffff,7fffffffffffffff] PASSED.
+
+  Test #2 - Try to lock the whole file.
+  	Parent: 2.0  - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  2.1  - F_TEST  [               0,               1] PASSED.
+  	Child:  2.2  - F_TEST  [               0,          ENDING] PASSED.
+  	Child:  2.3  - F_TEST  [               0,7fffffffffffffff] PASSED.
+  	Child:  2.4  - F_TEST  [               1,               1] PASSED.
+  	Child:  2.5  - F_TEST  [               1,          ENDING] PASSED.
+  	Child:  2.6  - F_TEST  [               1,7fffffffffffffff] PASSED.
+  	Child:  2.7  - F_TEST  [7fffffffffffffff,               1] PASSED.
+  	Child:  2.8  - F_TEST  [7fffffffffffffff,          ENDING] PASSED.
+  	Child:  2.9  - F_TEST  [7fffffffffffffff,7fffffffffffffff] PASSED.
+  	Parent: 2.10 - F_ULOCK [               0,          ENDING] PASSED.
+
+  Test #3 - Try to lock just the 1st byte.
+  	Parent: 3.0  - F_TLOCK [               0,               1] PASSED.
+  	Child:  3.1  - F_TEST  [               0,               1] PASSED.
+  	Child:  3.2  - F_TEST  [               0,          ENDING] PASSED.
+  	Child:  3.3  - F_TEST  [               1,               1] PASSED.
+  	Child:  3.4  - F_TEST  [               1,          ENDING] PASSED.
+  	Parent: 3.5  - F_ULOCK [               0,               1] PASSED.
+
+  Test #4 - Try to lock the 2nd byte, test around it.
+  	Parent: 4.0  - F_TLOCK [               1,               1] PASSED.
+  	Child:  4.1  - F_TEST  [               0,               1] PASSED.
+  	Child:  4.2  - F_TEST  [               0,               2] PASSED.
+  	Child:  4.3  - F_TEST  [               0,          ENDING] PASSED.
+  	Child:  4.4  - F_TEST  [               1,               1] PASSED.
+  	Child:  4.5  - F_TEST  [               1,               2] PASSED.
+  	Child:  4.6  - F_TEST  [               1,          ENDING] PASSED.
+  	Child:  4.7  - F_TEST  [               2,               1] PASSED.
+  	Child:  4.8  - F_TEST  [               2,               2] PASSED.
+  	Child:  4.9  - F_TEST  [               2,          ENDING] PASSED.
+  	Parent: 4.10 - F_ULOCK [               1,               1] PASSED.
+
+  Test #5 - Try to lock 1st and 2nd bytes, test around them.
+  	Parent: 5.0  - F_TLOCK [               0,               1] PASSED.
+  	Parent: 5.1  - F_TLOCK [               2,               1] PASSED.
+  	Child:  5.2  - F_TEST  [               0,               1] PASSED.
+  	Child:  5.3  - F_TEST  [               0,               2] PASSED.
+  	Child:  5.4  - F_TEST  [               0,          ENDING] PASSED.
+  	Child:  5.5  - F_TEST  [               1,               1] PASSED.
+  	Child:  5.6  - F_TEST  [               1,               2] PASSED.
+  	Child:  5.7  - F_TEST  [               1,          ENDING] PASSED.
+  	Child:  5.8  - F_TEST  [               2,               1] PASSED.
+  	Child:  5.9  - F_TEST  [               2,               2] PASSED.
+  	Child:  5.10 - F_TEST  [               2,          ENDING] PASSED.
+  	Child:  5.11 - F_TEST  [               3,               1] PASSED.
+  	Child:  5.12 - F_TEST  [               3,               2] PASSED.
+  	Child:  5.13 - F_TEST  [               3,          ENDING] PASSED.
+  	Parent: 5.14 - F_ULOCK [               0,               1] PASSED.
+  	Parent: 5.15 - F_ULOCK [               2,               1] PASSED.
+
+  Test #6 - Try to lock the MAXEOF byte.
+  	Parent: 6.0  - F_TLOCK [7fffffffffffffff,               1] PASSED.
+  	Child:  6.1  - F_TEST  [7ffffffffffffffe,               1] PASSED.
+  	Child:  6.2  - F_TEST  [7ffffffffffffffe,               2] PASSED.
+  	Child:  6.3  - F_TEST  [7ffffffffffffffe,          ENDING] PASSED.
+  	Child:  6.4  - F_TEST  [7fffffffffffffff,               1] PASSED.
+  	Child:  6.5  - F_TEST  [7fffffffffffffff,               2] PASSED.
+  	Child:  6.6  - F_TEST  [7fffffffffffffff,          ENDING] PASSED.
+  	Child:  6.7  - F_TEST  [8000000000000000,          ENDING] PASSED.
+  	Child:  6.8  - F_TEST  [8000000000000000,               1] PASSED.
+  	Child:  6.9  - F_TEST  [8000000000000000,7fffffffffffffff] PASSED.
+  	Child:  6.10 - F_TEST  [8000000000000000,8000000000000000] PASSED.
+  	Parent: 6.11 - F_ULOCK [7fffffffffffffff,               1] PASSED.
+
+  Test #7 - Test parent/child mutual exclusion.
+  	Parent: 7.0  - F_TLOCK [             ffc,               9] PASSED.
+  	Parent: Wrote 'aaaa eh' to testfile [ 4092, 7 ].
+  	Parent: Now free child to run, should block on lock.
+  	Parent: Check data in file to insure child blocked.
+  	Parent: Read 'aaaa eh' from testfile [ 4092, 7 ].
+  	Parent: 7.1  - COMPARE [             ffc,               7] PASSED.
+  	Parent: Now unlock region so child will unblock.
+  	Parent: 7.2  - F_ULOCK [             ffc,               9] PASSED.
+  	Child:  7.3  - F_LOCK  [             ffc,               9] PASSED.
+  	Child:  Write child's version of the data and release lock.
+  	Parent: Now try to regain lock, parent should block.
+  	Child:  Wrote 'bebebebeb' to testfile [ 4092, 9 ].
+  	Child:  7.4  - F_ULOCK [             ffc,               9] PASSED.
+  	Parent: 7.5  - F_LOCK  [             ffc,               9] PASSED.
+  	Parent: Check data in file to insure child unblocked.
+  	Parent: Read 'bebebebeb' from testfile [ 4092, 9 ].
+  	Parent: 7.6  - COMPARE [             ffc,               9] PASSED.
+  	Parent: 7.7  - F_ULOCK [             ffc,               9] PASSED.
+
+  Test #8 - Rate test performing lock/unlock cycles.
+  	Parent: Performed 1000 lock/unlock cycles in 4500 msecs. [26666 lpm].
+
+  Test #10 - Make sure a locked region is split properly.
+  	Parent: 10.0  - F_TLOCK [               0,               3] PASSED.
+  	Parent: 10.1  - F_ULOCK [               1,               1] PASSED.
+  	Child:  10.2  - F_TEST  [               0,               1] PASSED.
+  	Child:  10.3  - F_TEST  [               2,               1] PASSED.
+  	Child:  10.4  - F_TEST  [               3,          ENDING] PASSED.
+  	Child:  10.5  - F_TEST  [               1,               1] PASSED.
+  	Parent: 10.6  - F_ULOCK [               0,               1] PASSED.
+  	Parent: 10.7  - F_ULOCK [               2,               1] PASSED.
+  	Child:  10.8  - F_TEST  [               0,               3] PASSED.
+  	Parent: 10.9  - F_ULOCK [               0,               1] PASSED.
+  	Parent: 10.10 - F_TLOCK [               1,               3] PASSED.
+  	Parent: 10.11 - F_ULOCK [               2,               1] PASSED.
+  	Child:  10.12 - F_TEST  [               1,               1] PASSED.
+  	Child:  10.13 - F_TEST  [               3,               1] PASSED.
+  	Child:  10.14 - F_TEST  [               4,          ENDING] PASSED.
+  	Child:  10.15 - F_TEST  [               2,               1] PASSED.
+  	Child:  10.16 - F_TEST  [               0,               1] PASSED.
+
+  Test #11 - Make sure close() releases the process's locks.
+  	Parent: 11.0  - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: Closed testfile.
+  	Child:  11.1  - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  11.2  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: 11.3  - F_TLOCK [              1d,             5b7] PASSED.
+  	Parent: 11.4  - F_TLOCK [            2000,              57] PASSED.
+  	Parent: Closed testfile.
+  	Child:  11.5  - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  11.6  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: Wrote '123456789abcdef' to testfile [ 0, 16 ].
+  	Parent: 11.7  - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: Wrote '123456789abcdef' to testfile [ 13, 16 ].
+  	Parent: Closed testfile.
+  	Child:  11.8  - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  11.9  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: Wrote '123456789abcdef' to testfile [ 0, 16 ].
+  	Parent: 11.10 - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: Truncated testfile.
+  	Parent: Closed testfile.
+  	Child:  11.11 - F_TLOCK [               0,          ENDING] PASSED.
+  	Child:  11.12 - F_ULOCK [               0,          ENDING] PASSED.
+
+  Test #12 - Signalled process should release locks.
+  	Child:  12.0  - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: Killed child process.
+  	Parent: 12.1  - F_TLOCK [               0,          ENDING] PASSED.
+
+  Test #13 - Check locking and mmap semantics.
+  	Parent: 13.0  - F_TLOCK [             ffe,          ENDING] PASSED.
+  	Parent: 13.1  - mmap [               0,            1000] WARNING!
+  	Parent: **** Expected EAGAIN, returned success...
+  	Parent: 13.2  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: unmap testfile.
+  	Parent: 13.3  - mmap [               0,            1000] PASSED.
+  	Parent: 13.4  - F_TLOCK [             ffe,          ENDING] PASSED.
+
+  Test #14 - Rate test performing I/O on unlocked and locked file.
+  	Parent: File Unlocked
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Wrote and read 256 KB file 10 times; [1340.31 +/- 29.24 KB/s].
+  	Parent: 14.0  - F_TLOCK [               0,          ENDING] PASSED.
+  	Parent: File Locked
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Truncated testfile.
+  	Parent: Wrote and read 256 KB file 10 times; [1329.87 +/- 9.20 KB/s].
+  	Parent: 14.1  - F_ULOCK [               0,          ENDING] PASSED.
+
+  Test #15 - Test 2nd open and I/O after lock and close.
+  	Parent: Second open succeeded.
+  	Parent: 15.0  - F_LOCK  [               0,          ENDING] PASSED.
+  	Parent: 15.1  - F_ULOCK [               0,          ENDING] PASSED.
+  	Parent: Closed testfile.
+  	Parent: Wrote 'abcdefghij' to testfile [ 0, 11 ].
+  	Parent: Read 'abcdefghij' from testfile [ 0, 11 ].
+  	Parent: 15.2  - COMPARE [               0,               b] PASSED.
+
+  ** PARENT pass 1 results: 49/49 pass, 1/1 warn, 0/0 fail (pass/total).
+
+  **  CHILD pass 1 results: 64/64 pass, 0/0 warn, 0/0 fail (pass/total).
+  Congratulations, you passed the locking tests!
+
+  All tests completed
+
+title: NFS v3 TCP - Locking Test 2
+total: 1
+passed: 1
+type: locking

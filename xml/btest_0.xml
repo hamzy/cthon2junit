@@ -1,0 +1,7 @@
+<testsuite failures='1' name='NFS v3 TCP - Basic Test Failure' tests='1' time='0'><testcase name='Basic Tests' time='0'><failure message='
+mount.nfs: mount system call failed
+Can&apos;t mount 192.168.122.101:/mnt/temp on /mnt/192.168.122.101
+'/></testcase><system-out>
+mount.nfs: mount system call failed
+Can&apos;t mount 192.168.122.101:/mnt/temp on /mnt/192.168.122.101
+</system-out></testsuite>

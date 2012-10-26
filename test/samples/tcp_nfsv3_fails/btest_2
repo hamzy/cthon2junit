@@ -1,0 +1,18 @@
+output: |
+  
+  sh ./runtests  -b -t /mnt/192.168.122.101/laptop.test
+  
+  Starting BASIC tests: test directory /mnt/192.168.122.101/laptop.test (arg: -t)
+  
+  ./test1: File and directory creation test
+  	 created 155 files 62 directories 5 levels deep in 0.32 seconds
+  	 ./test1 ok.
+  
+  ./test2: File and directory removal test
+  	 ./test2: (/mnt/192.168.122.101/laptop.test) unlink file.0 failed
+  basic tests failed
+  Tests failed, leaving /mnt/192.168.122.101 mounted
+title: NFS v3 TCP - Basic Test - Test 2 Failure
+total: 1
+passed: 0
+type: basic

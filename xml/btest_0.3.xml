@@ -1,0 +1,7 @@
+<testsuite failures='1' name='NFS v3 TCP - Basic Test - Mount Failure' tests='1' time='0'><testcase name='Basic Tests' time='0'><failure message='
+mount.nfs: DNS resolution failed for asdfasd: Name or service not known
+Can&apos;t mount asdfasd:/server on /mnt/asdfasd
+'/></testcase><system-out>
+mount.nfs: DNS resolution failed for asdfasd: Name or service not known
+Can&apos;t mount asdfasd:/server on /mnt/asdfasd
+</system-out></testsuite>

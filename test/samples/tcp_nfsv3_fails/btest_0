@@ -1,0 +1,8 @@
+output: |
+  
+  mount.nfs: mount system call failed
+  Can't mount 192.168.122.101:/mnt/temp on /mnt/192.168.122.101
+title: NFS v3 TCP - Basic Test Failure
+total: 1
+passed: 0
+type: basic

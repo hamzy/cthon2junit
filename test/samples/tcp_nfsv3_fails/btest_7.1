@@ -1,0 +1,39 @@
+output: |
+  
+  sh ./runtests  -b -t /mnt/192.168.122.101/laptop.test
+  
+  Starting BASIC tests: test directory /mnt/192.168.122.101/laptop.test (arg: -t)
+  
+  ./test1: File and directory creation test
+  	created 155 files 62 directories 5 levels deep in 0.27 seconds
+  	./test1 ok.
+  
+  ./test2: File and directory removal test
+  	removed 155 files 62 directories 5 levels deep in 0.13 seconds
+  	./test2 ok.
+  
+  ./test3: lookups across mount point
+  	500 getcwd and stat calls in 0.0  seconds
+  	./test3 ok.
+  
+  ./test4: setattr, getattr, and lookup
+  	1000 chmods and stats on 10 files in 0.61 seconds
+  	./test4 ok.
+  
+  ./test5: read and write
+  	wrote 1048576 byte file 10 times in 2.14 seconds (4899283 bytes/sec)
+  	read 1048576 byte file 10 times in 0.1  seconds (563993115 bytes/sec)
+  	./test5 ok.
+  TESTARG=-t
+  ./test6: readdir
+  	20500 entries read, 200 files in 3.30 seconds
+  	./test6 ok.
+  
+  ./test7: link and rename
+  	./test7: (/mnt/192.168.122.101/laptop.test) file.0 exists after rename to newfile.0
+  basic tests failed
+  Tests failed, leaving /mnt/192.168.122.101 mounted
+title: NFS v3 TCP - Basic Test - Test 7.1 Failure
+total: 1
+passed: 0
+type: basic

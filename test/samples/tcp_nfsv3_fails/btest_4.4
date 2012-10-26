@@ -1,0 +1,26 @@
+output: |
+  
+  sh ./runtests  -b -t /mnt/192.168.122.101/laptop.test
+  
+  Starting BASIC tests: test directory /mnt/192.168.122.101/laptop.test (arg: -t)
+  
+  ./test1: File and directory creation test
+  	created 155 files 62 directories 5 levels deep in 0.26 seconds
+  	./test1 ok.
+  
+  ./test2: File and directory removal test
+  	removed 155 files 62 directories 5 levels deep in 0.15 seconds
+  	./test2 ok.
+  
+  ./test3: lookups across mount point
+  	500 getcwd and stat calls in 0.0  seconds
+  	./test3 ok.
+  
+  ./test4: setattr, getattr, and lookup
+  	./test4: (/mnt/192.168.122.101/laptop.test) file.0 has mode 666 after chmod 0666
+  basic tests failed
+  Tests failed, leaving /mnt/192.168.122.101 mounted
+title: NFS v3 TCP - Basic Test - Test 4.4 Failure
+total: 1
+passed: 0
+type: basic

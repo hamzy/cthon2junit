@@ -27,7 +27,7 @@ udp = ARGV[3] || "noudp"
 krbtested = ARGV[4] || "nokrb"
 version = ARGV[5] || "v3"
 
-require "lib/cthon2junit.rb"
+require "./lib/cthon2junit.rb"
 
 # clean up xml files
 Dir.chdir(home) do |path|
